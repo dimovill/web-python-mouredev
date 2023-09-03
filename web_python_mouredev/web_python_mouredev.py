@@ -1,35 +1,21 @@
 import reflex as rx
 
-
-class State(rx.State):
-    count: int = 0
-
-    def increment(self):
-        self.count += 1
-
-    def decrement(self):
-        self.count -= 1
-
-
-def index():
-    return rx.vstack( 
-    rx.hstack(
-        rx.button(
-            "Decrement",
-            color_scheme="red",
-            border_radius="1em",
-            on_click=State.decrement,
+def index() -> rx.Component:
+    return rx.container(
+        rx.box(
+            "What is Reflex?",
+            # The user's question is on the right.
+            text_align="right",
         ),
-        rx.heading("hola",State.count, font_size="2em"),
-        rx.button(
-            "Increment",
-            color_scheme="green",
-            border_radius="1em",
-            on_click=State.increment,
+        rx.box(
+            "A way to build web apps in pure Python 1!",
+            # The answer is on the left.
+            text_align="left",
         ),
     )
-		)
 
+
+# Add state and page to the app.
 app = rx.App()
 app.add_page(index)
 app.compile()
